@@ -4,12 +4,14 @@ import { Footer } from "./Footer";
 
 export const MainLayOut = ({ children }) => {
   return (
-    <div>
+    <div className="">
       {/* header */}
       <Header />
 
       {/* main area */}
-      <main className="main ">{children}</main>
+      <div className="main" style={{ minHeight: "80vh" }}>
+        {children}
+      </div>
 
       {/* footer */}
       <Footer />

@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 export const Header = () => {
   return (
     <Navbar expand="md" variant="dark" className="bg-dark">
-      <Container>
+      <Container className="me-auto">
         <Navbar.Brand href="#home">Library Home</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             <Link className="nav-link" to="/">
               Home
             </Link>
