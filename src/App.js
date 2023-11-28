@@ -3,6 +3,7 @@ import Login from "./pages/user_signup_login/Login";
 import AdminSignUp from "./pages/admin_signup/AdminSignUp";
 import SignUp from "./pages/user_signup_login/SignUp";
 import Home from "./pages/home/Home";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         {/* private routes */}
         <Route path="/admin-signup" element={<AdminSignUp />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 };
