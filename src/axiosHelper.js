@@ -4,10 +4,9 @@ const rootEndPoint = process.env.REACT_APP_ROOTAPI;
 
 const userEndPoint = rootEndPoint + "/users";
 
-export const postAdminUser = async (data) => {
+const axiosProcessor = async (obj) => {
   try {
-    const resp = await axios.post(userEndPoint + "/admin-user", data);
-
+    const resp = await axios(obj);
     return resp.data;
   } catch (error) {
     return {
@@ -15,4 +14,19 @@ export const postAdminUser = async (data) => {
       message: error.message,
     };
   }
+};
+export const postAdminUser = async (data) => {
+  return axiosProcessor({
+    method: "post",
+    url: userEndPoint + "/admin-user",
+    data,
+  });
+};
+
+export const loginUser = async (data) => {
+  return axiosProcessor({
+    method: "post",
+    url: userEndPoint + "/login",
+    data,
+  });
 };
