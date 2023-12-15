@@ -23,8 +23,17 @@ const Login = () => {
 
     // axios
 
-    const { status, message } = await loginUser({ email, password });
+    const { status, message, jwts } = await loginUser({ email, password });
     toast[status](message);
+
+    const { accessJwt, refreshJwt } = jwts;
+
+    if (status === "success") {
+      sessionStorage.setItem("accessJwt", accessJwt);
+      localStorage.setItem("refreshJwt", refreshJwt);
+    }
+
+    // fetch user info and redirect to the dashboard
   };
 
   const inputs = [
