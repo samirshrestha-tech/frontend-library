@@ -24,13 +24,14 @@ const Login = () => {
     // axios
 
     const { status, message, jwts } = await loginUser({ email, password });
+    console.log(jwts);
 
-    const { accessJwt, refreshJwt } = jwts;
+    const { refreshJwt, accessJwt } = jwts;
 
     if (status === "success") {
       sessionStorage.setItem("accessJwt", accessJwt);
       localStorage.setItem("refreshJwt", refreshJwt);
-      return;
+      // return;
     }
 
     // fetch user info and redirect to the dashboard
