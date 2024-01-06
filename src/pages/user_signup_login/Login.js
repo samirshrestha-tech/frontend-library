@@ -4,6 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { toast } from "react-toastify";
 import { loginUser } from "../../axiosHelper";
+import { getUserAction } from "./userAction";
 
 const Login = () => {
   const emailRef = useRef("");
@@ -24,18 +25,19 @@ const Login = () => {
     // axios
 
     const { status, message, jwts } = await loginUser({ email, password });
-    console.log(jwts);
 
     const { refreshJwt, accessJwt } = jwts;
 
     if (status === "success") {
       sessionStorage.setItem("accessJwt", accessJwt);
       localStorage.setItem("refreshJwt", refreshJwt);
-      // return;
-    }
+      // fetch user info and redirect to the dashboard
 
-    // fetch user info and redirect to the dashboard
-    toast[status](message);
+      getUserAction();
+      toast[status](message);
+
+      return;
+    }
   };
 
   const inputs = [

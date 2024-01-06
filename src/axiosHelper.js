@@ -5,16 +5,20 @@ const rootEndPoint = process.env.REACT_APP_ROOTAPI;
 const userEndPoint = rootEndPoint + "/users";
 
 const getAccessJwt = () => {
-  return sessionStorage.getItem("AccessJwt");
+  const token = sessionStorage.getItem("accessJwt");
+
+  return token;
 };
 
 const axiosProcessor = async (obj) => {
+  if (obj.isPrivate) {
+    obj.headers = {
+      Authorization: getAccessJwt(),
+    };
+  }
+
   try {
-    const resp = await axios(obj, {
-      headers: {
-        Authorization: getAccessJwt(),
-      },
-    });
+    const resp = await axios(obj);
     return resp.data;
   } catch (error) {
     return {
@@ -45,5 +49,6 @@ export const getUser = async () => {
   return axiosProcessor({
     method: "get",
     url: userEndPoint,
+    isPrivate: true,
   });
 };
