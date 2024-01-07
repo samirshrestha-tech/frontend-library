@@ -5,10 +5,13 @@ import { CustomInput } from "../../components/CustomInput/CustomInput";
 import { toast } from "react-toastify";
 import { loginUser } from "../../axiosHelper";
 import { getUserAction } from "./userAction";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
+
+  const dispatch = useDispatch();
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +36,7 @@ const Login = () => {
       localStorage.setItem("refreshJwt", refreshJwt);
       // fetch user info and redirect to the dashboard
 
-      getUserAction();
+      dispatch(getUserAction());
       toast[status](message);
 
       return;
